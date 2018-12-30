@@ -175,7 +175,8 @@ probabilities = tf.nn.softmax(upsampled_logits)
 # is equivalent to running:
 # train_step = tf.train.AdamOptimizer(learning_rate=0.0001).minimize(cross_entropy_loss)
 with tf.variable_scope("adam_vars"):
-    optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
+    #optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
+    optimizer = tf.train.RMSPropOptimizer(learning_rate=FLAGS.learning_rate)
     gradients = optimizer.compute_gradients(loss=cross_entropy_loss)
 
     for grad_var_pair in gradients:
